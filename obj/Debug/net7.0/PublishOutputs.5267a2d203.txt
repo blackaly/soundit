@@ -1,0 +1,6 @@
+C:\Users\alges\Desktop\forTesting\soundit\bin\Debug\net7.0\publish\soundit.exe
+C:\Users\alges\Desktop\forTesting\soundit\bin\Debug\net7.0\publish\soundit.dll
+C:\Users\alges\Desktop\forTesting\soundit\bin\Debug\net7.0\publish\soundit.deps.json
+C:\Users\alges\Desktop\forTesting\soundit\bin\Debug\net7.0\publish\soundit.runtimeconfig.json
+C:\Users\alges\Desktop\forTesting\soundit\bin\Debug\net7.0\publish\soundit.pdb
+C:\Users\alges\Desktop\forTesting\soundit\bin\Debug\net7.0\publish\Newtonsoft.Json.dll

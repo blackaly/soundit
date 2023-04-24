@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Kl5OiyCasRKtWFlHj7+2M6GP+lYi0RO/qlNq7jl6d/Qiz6VO0HZzn6ty4lc6Ii5DyYRPMmNolYKCEt7EOGL3xg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\alges\\Desktop\\forTesting\\soundit\\soundit.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alges\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
