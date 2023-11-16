@@ -17,7 +17,7 @@ public class SoundIt{
     {
         this.Payload = new Dictionary<string, dynamic>();
         this.URL = url;
-        this.Youtube = @"https://www.youtube.com/youtubei/v1/player?key=AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
+        this.Youtube = @"https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
     }
 
     private async Task<JObject> MakeRequest(string id){
@@ -69,8 +69,8 @@ public class SoundIt{
         this.Payload.Add("videoId", id);
         var context = new Dictionary<string, Dictionary<string, dynamic>>(){
             {"client", new Dictionary<string, dynamic>(){
-                {"clientName", "ANDROID"},
-                {"clientVersion", "17.10.35"},
+                {"clientName", "ANDROID_TESTSUITE"},
+                {"clientVersion", "1.9"},
                 {"androidSdkVersion", 30}
             }}
         };
