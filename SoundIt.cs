@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Text;
+
 namespace Soundit;
 
 public class SoundIt{
@@ -69,13 +70,19 @@ public class SoundIt{
         this.Payload.Add("videoId", id);
         var context = new Dictionary<string, Dictionary<string, dynamic>>(){
             {"client", new Dictionary<string, dynamic>(){
-                {"clientName", "ANDROID_TESTSUITE"},
-                {"clientVersion", "1.9"},
-                {"androidSdkVersion", 30}
+                {"clientName", "IOS"},
+                {"clientVersion", "19.45.4"},
+                {"androidSdkVersion", 30},
+                {"deviceMake", "Apple"},
+                {"deviceModel", "iPhone16,2"},
+                {"platform", "MOBILE"},
+                {"osName", "IOS"},
+                {"osVersion", "18.1.0.22B83"},
+                {"visitorData", "Cgtsb0JmaEZ4R2JUOCidntq8BjIKCgJFRxIEGgAgDDoMCAEg1P2wwdTjo8tn"}
+
             }}
         };
         this.Payload.Add("context", context);
         
     }
-    
 }

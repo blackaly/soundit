@@ -41,11 +41,9 @@ class Program{
             
         }
         try{
-            using(var client = new WebClient()){
-            client.DownloadProgressChanged += DownloadProgressCallback;
-            await client.DownloadFileTaskAsync(data[0], PATH);
-            
-            }
+            using(var client = new HttpClient()){
+            await DownloadFileWithProgressAsync(client, data[0], PATH);
+        }
         }catch(Exception e){
             Console.WriteLine(e.Message);
         }
@@ -53,11 +51,6 @@ class Program{
     } 
 
     static void DEBUG(string s){Console.WriteLine(s);}  
-    static void DownloadProgressCallback(object sender, DownloadProgressChangedEventArgs e)
-    {
-        Console.Write($"\rDownloading... {e.ProgressPercentage}% [{new string('#', (int)(e.ProgressPercentage / 10))}{new string('-', (int)(10 - e.ProgressPercentage / 10))}]");
-    }
-
     static string RemoveSpecial(string str){
         if(string.IsNullOrEmpty(str)) return string.Empty;
         string cmp = "#<$+%>!`*'|{?\"}=/:\\@";
@@ -69,4 +62,47 @@ class Program{
 
         return res;
     }
+    static async Task DownloadFileWithProgressAsync(HttpClient httpClient, string url, string filePath)
+    {
+        using var response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+        response.EnsureSuccessStatusCode();
+
+        var totalBytes = response.Content.Headers.ContentLength ?? -1L;
+        var downloadedBytes = 0L;
+        var buffer = new byte[8192];
+        var isMoreToRead = true;
+
+        using var contentStream = await response.Content.ReadAsStreamAsync();
+        using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true);
+
+        while (isMoreToRead)
+        {
+            var read = await contentStream.ReadAsync(buffer, 0, buffer.Length);
+            if (read == 0)
+            {
+                isMoreToRead = false;
+            }
+            else
+            {
+                await fileStream.WriteAsync(buffer, 0, read);
+
+                downloadedBytes += read;
+                ReportProgress(downloadedBytes, totalBytes);
+            }
+        }
+    }
+
+    static void ReportProgress(long downloadedBytes, long totalBytes)
+    {
+        if (totalBytes <= 0)
+        {
+            Console.Write($"\rDownloaded {downloadedBytes} bytes...");
+        }
+        else
+        {
+            var progressPercentage = (int)((double)downloadedBytes / totalBytes * 100);
+            Console.Write($"\rDownloading... {progressPercentage}% [{new string('#', progressPercentage / 10)}{new string('-', 10 - progressPercentage / 10)}]");
+        }
+    }
+
 }
