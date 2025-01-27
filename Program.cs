@@ -6,8 +6,9 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using Soundit;
 using System.Net;
+using Visitordata;
 
-class Program{
+class Program {
     static void Main(string[] args){
 
         if(args.Length <= 0){
